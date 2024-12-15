@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.10.0"
+  required_version = ">= 1.0.0"
   
   backend "gcs" {
     bucket = "tf-state-bucket-sonoflope"
