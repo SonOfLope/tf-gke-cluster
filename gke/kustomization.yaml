@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ./apps/otel-demo/
+- ./system/argocd/
+- ./system/cert-manager/
+- ./system/contour/
+- ./system/otel/
+
+patches:
+- patch: |-
+    apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: not-used
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
+    spec:
+      syncPolicy:
+        automated:
+          selfHeal: true
+  target:
+    kind: Application

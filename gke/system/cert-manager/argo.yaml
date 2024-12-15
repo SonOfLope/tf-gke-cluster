@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+spec:
+  destination:
+    namespace: cert-manager
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - chart: cert-manager
+      helm:
+        parameters: 
+          - name: installCRDs
+            value: "true"
+      repoURL: https://charts.jetstack.io
+      targetRevision: v1.16.2
+    - repoURL: 'https://github.com/SonOfLope/tf-gke-cluster.git'
+      targetRevision: master
+      ref: values
+    - repoURL: 'https://github.com/SonOfLope/tf-gke-cluster.git'
+      targetRevision: master
+      path: gke/system/cert-manager/base
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true

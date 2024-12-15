@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  name: opentelemetry-operator
+  namespace: argocd
+spec:
+  destination:
+    namespace: opentelemetry-operator-system
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    - repoURL: 'https://github.com/SonOfLope/tf-gke-cluster.git'
+      path: gke/system/otel/base
+      targetRevision: HEAD
+  syncPolicy:
+    automated:
+      selfHeal: true

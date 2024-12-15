@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: otel-shop
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  ingressClassName: contour
+  tls:
+  - hosts:
+    - shop.gcp.sonoflope.ca
+    secretName: shop-gcp-sonoflope-ca-tls
+  rules:
+  - host: shop.gcp.sonoflope.ca
+    http:
+      paths: 
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: otel-shop-demo-frontendproxy
+              port:
+                number: 8080

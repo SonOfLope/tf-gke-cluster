@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  name: argocd
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - chart: argo-cd
+      helm:
+        releaseName: argocd
+        valueFiles:
+        - $values/gke/system/argocd/helm/values.yaml
+      repoURL: https://argoproj.github.io/argo-helm
+      targetRevision: 6.7.9
+    - repoURL: 'https://github.com/SonOfLope/tf-gke-cluster.git'
+      targetRevision: master
+      ref: values
+    - repoURL: 'https://github.com/SonOfLope/tf-gke-cluster.git'
+      path: gke/system/argocd/base
+      targetRevision: HEAD
+  syncPolicy:
+    automated:
+      selfHeal: true

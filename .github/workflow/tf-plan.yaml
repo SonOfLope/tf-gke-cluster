@@ -1,0 +1,41 @@
+name: Terraform Plan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  terraform-plan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.3.0
+
+      - name: Authenticate with GCP
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: "${{ runner.temp }}/gcp-key.json"
+        run: |
+          echo "${{ secrets.GCP_CREDENTIALS }}" > $GOOGLE_APPLICATION_CREDENTIALS
+
+      - name: Setup tfvars file
+        run: |
+          echo "${{ secrets.CLUSTER_TFVARS }}" > terraform/cluster.tfvars
+
+      - name: Terraform Init
+        run: terraform -chdir=terraform/ init
+
+      - name: Terraform Validate
+        run: terraform -chdir=terraform/ validate
+
+      - name: Terraform Plan
+        run: terraform -chdir=terraform/ plan -var-file="cluster.tfvars"
+
+      - name: tfsec
+        uses: aquasecurity/tfsec-action@v1.0.0
+        with:
+          working_directory: terraform/
