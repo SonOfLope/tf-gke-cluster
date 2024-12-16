@@ -1,4 +1,3 @@
-branch: main
 directory:
   - terraform
   - gke/apps
