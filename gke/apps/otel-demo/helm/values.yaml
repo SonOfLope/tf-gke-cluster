@@ -458,7 +458,7 @@ components:
         value: http://$(OTEL_COLLECTOR_NAME):4317
     resources:
       limits:
-        memory: 20Mi
+        memory: 1Gi
 
   quoteService:
     enabled: true
@@ -475,7 +475,7 @@ components:
         value: http://$(OTEL_COLLECTOR_NAME):4318
     resources:
       limits:
-        memory: 40Mi
+        memory: 1Gi
     securityContext:
       runAsUser: 33  # www-data
       runAsGroup: 33
