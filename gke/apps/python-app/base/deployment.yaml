@@ -83,7 +83,7 @@ spec:
               port:
                 number: 8080
 ---
-apiVersion: instrumentation.opentelemetry.io/v1alpha1
+apiVersion: opentelemetry.io/v1alpha1
 kind: Instrumentation
 metadata:
   name: python-app-instrumentation

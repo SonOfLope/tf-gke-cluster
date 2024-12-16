@@ -416,7 +416,7 @@ components:
         value: "8013"
     resources:
       limits:
-        memory: 1Gi
+        memory: 2Gi
 
   paymentService:
     enabled: true

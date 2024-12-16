@@ -5,7 +5,7 @@ directory:
 output: cli
 soft-fail: false
 quiet: true
-check:
+check: # Policy index https://www.checkov.io/5.Policy%20Index/all.html
   # GCP checks
   - CKV_GCP_10
   - CKV_GCP_9
