@@ -71,7 +71,7 @@ spec:
   ingressClassName: contour
   tls:
   - hosts:
-    - python
+    - python.gcp.sonoflope.ca
     secretName: python-gcp-sonoflope-ca-tls
   rules:
   - host: python.gcp.sonoflope.ca
