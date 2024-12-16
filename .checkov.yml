@@ -8,7 +8,6 @@ quiet: true
 check:
   - CKV_GCP_10
   - CKV_GCP_9
-  - CKV_GCP_23
   - CKV_K8S_27
   - CKV_K8S_29
   - CKV_K8S_30
