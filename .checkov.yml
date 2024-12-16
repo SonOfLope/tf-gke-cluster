@@ -6,9 +6,12 @@ output: cli
 soft-fail: false
 quiet: true
 check:
+  # GCP checks
   - CKV_GCP_10
   - CKV_GCP_9
   - CKV_GCP_23
+
+  # Kubernetes checks
   - CKV_K8S_27
   - CKV_K8S_29
   - CKV_K8S_30
@@ -18,5 +21,11 @@ check:
   - CKV_K8S_37
   - CKV_K8S_39
   - CKV_K8S_41
+
+  # Docker checks
+  - CKV_DOCKER_2
+  - CKV_DOCKER_3
+  - CKV_DOCKER_6
+
 skip-check:
   - CKV_GCP_1
