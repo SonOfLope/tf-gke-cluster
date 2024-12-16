@@ -41,7 +41,7 @@ spec:
         - name: otel-collector
           image: otel/opentelemetry-collector:0.79.0
           command:
-            - "/otelcol-contrib"
+            - "/otelcol"
             - "--config=/etc/otel-config.yaml"
           volumeMounts:
             - name: config-volume
