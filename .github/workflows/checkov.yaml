@@ -1,0 +1,33 @@
+name: SCA Checkov Scan
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  checkov-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install Checkov
+        run: pip install checkov
+
+      - name: Run Checkov Scan
+        run: checkov -d terraform --config-file .checkov.yml
+
+      - name: Checkov score threshold
+        run: |
+          if [[ $(checkov -d . --quiet | grep 'Failed checks' | awk '{print $3}') -gt 10 ]]; then
+            echo "Checkov score exceeded threshold. Failing pipeline."
+            exit 1
+          fi

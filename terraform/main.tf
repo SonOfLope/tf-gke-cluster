@@ -1,9 +1,13 @@
 terraform {
   required_version = ">= 1.0.0"
   
-  backend "gcs" {
-    bucket = "tf-state-bucket-sonoflope"
-    prefix = "terraform/state"
+  backend "remote" {
+    hostname = "app.terraform.io"
+    organization = "sonoflope"
+
+    workspaces {
+      name = "tf-gke-cluster"
+    }
   }
 }
 

@@ -44,4 +44,10 @@ resource "google_container_node_pool" "primary_standard_nodes" {
     auto_repair  = true
     auto_upgrade = true
   }
+
+  lifecycle {
+    ignore_changes = [
+      node_config[0].linux_node_config
+    ]
+  }
 }
