@@ -27,12 +27,8 @@ spec:
               value: 'true'
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: http://otel-shop-demo-otelcol:4317
-            - name: OTEL_EXPORTER_OTLP_PROTOCOL
-              value: grpc
             - name: OTEL_SERVICE_NAME
               value: python-app
-            - name: OTEL_LOG_LEVEL
-              value: debug
           resources:
             limits:
               memory: "256Mi"
@@ -96,7 +92,7 @@ metadata:
   namespace: default
 spec:
   exporter:
-    endpoint: "http://otel-collector:4317"
+    endpoint: "http://otel-shop-demo-otelcol:4317"
   propagators:
     - tracecontext
     - baggage
@@ -109,9 +105,5 @@ spec:
         value: 'true'
       - name: OTEL_EXPORTER_OTLP_ENDPOINT
         value: http://otel-shop-demo-otelcol:4317
-      - name: OTEL_EXPORTER_OTLP_PROTOCOL
-        value: grpc
       - name: OTEL_SERVICE_NAME
         value: python-app
-      - name: OTEL_LOG_LEVEL
-        value: debug
