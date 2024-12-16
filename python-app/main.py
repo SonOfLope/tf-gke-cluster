@@ -28,7 +28,7 @@ def get_cart(user_id):
 
 @app.route("/")
 def hello():
-    return "Python app", 200 
+    return "Python demo app", 200 
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080, debug=True)

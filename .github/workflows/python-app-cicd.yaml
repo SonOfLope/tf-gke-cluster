@@ -48,7 +48,7 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            ${{ env.REGISTRY }}/${{ inputs.container-name }}:${{ env.TAG }}
+            ${{ env.REGISTRY }}/python-app:${{ env.TAG }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
   
@@ -60,7 +60,7 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-              ${{ env.REGISTRY }}/${{ inputs.container-name }}:latest
+              ${{ env.REGISTRY }}/python-app:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
 
