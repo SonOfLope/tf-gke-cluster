@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
 - ./apps/otel-demo/
+- ./apps/python-app/
 - ./system/argocd/
 - ./system/cert-manager/
 - ./system/contour/

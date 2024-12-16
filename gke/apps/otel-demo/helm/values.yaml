@@ -299,7 +299,7 @@ components:
         value: http://$(OTEL_COLLECTOR_NAME):4318
     resources:
       limits:
-        memory: 200Mi
+        memory: 700Mi
     initContainers:
       - name: wait-for-kafka
         image: busybox:latest
@@ -416,7 +416,7 @@ components:
         value: "8013"
     resources:
       limits:
-        memory: 1Gi
+        memory: 2Gi
 
   paymentService:
     enabled: true
@@ -458,7 +458,7 @@ components:
         value: http://$(OTEL_COLLECTOR_NAME):4317
     resources:
       limits:
-        memory: 20Mi
+        memory: 1Gi
 
   quoteService:
     enabled: true
@@ -475,7 +475,7 @@ components:
         value: http://$(OTEL_COLLECTOR_NAME):4318
     resources:
       limits:
-        memory: 40Mi
+        memory: 1Gi
     securityContext:
       runAsUser: 33  # www-data
       runAsGroup: 33
@@ -521,7 +521,7 @@ components:
         value: http://$(OTEL_COLLECTOR_NAME):4317
     resources:
       limits:
-        memory: 20Mi
+        memory: 200Mi
 
   flagd:
     enabled: true
@@ -535,7 +535,7 @@ components:
       port: 8013
     resources:
       limits:
-        memory: 20Mi
+        memory: 200Mi
     command:
       - "/flagd-build"
       - "start"
@@ -545,7 +545,6 @@ components:
       - name: config
         mountPath: /etc/flagd
         existingConfigMap: '{{ include "otel-demo.name" . }}-flagd-config'
-
   kafka:
     enabled: true
     useDefault:
@@ -584,7 +583,7 @@ components:
         value: 6379
     resources:
       limits:
-        memory: 20Mi
+        memory: 200Mi
     securityContext:
       runAsUser: 999  # redis
       runAsGroup: 1000
