@@ -22,16 +22,5 @@ jobs:
       - name: Install Checkov
         run: pip install checkov
 
-      # - name: Run Checkov Scan
-      #   run: checkov --config-file .checkov.yml
-
-  terraform-cloud:
-    needs: [checkov-scan]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          cli_config_credentials_token: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
-      - name: Trigger terraform run
-        run: terraform cloud run-trigger --workspace=tf-gke-cluster
+      - name: Run Checkov Scan
+        run: checkov --config-file .checkov.yml
