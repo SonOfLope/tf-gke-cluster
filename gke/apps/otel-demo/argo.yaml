@@ -4,7 +4,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
   finalizers:
-  - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io
   name: otel-shop-demo
   namespace: argocd
 spec:
@@ -13,7 +13,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   sources:
-    - chart: opentelemetry-helm
+    - chart: opentelemetry-demo
       helm:
         releaseName: otel-shop-demo
         valueFiles:
