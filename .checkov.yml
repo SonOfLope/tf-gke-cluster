@@ -1,6 +1,7 @@
 branch: main
 directory:
-  - ./
+  - terraform
+  - gke/apps
 output: cli
 soft-fail: false
 quiet: true
