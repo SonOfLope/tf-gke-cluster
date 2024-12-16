@@ -1,0 +1,21 @@
+branch: main
+directory:
+  - ./
+output: cli
+soft-fail: false
+quiet: true
+check:
+  - CKV_GCP_10
+  - CKV_GCP_9
+  - CKV_GCP_23
+  - CKV_K8S_27
+  - CKV_K8S_29
+  - CKV_K8S_30
+  - CKV_K8S_32
+  - CKV_K8S_35
+  - CKV_K8S_36
+  - CKV_K8S_37
+  - CKV_K8S_39
+  - CKV_K8S_41
+skip-check:
+  - CKV_GCP_1

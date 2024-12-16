@@ -23,11 +23,11 @@ jobs:
         run: pip install checkov
 
       - name: Run Checkov Scan
-        run: checkov -d terraform --config-file .checkov.yml
+        run: checkov --config-file .checkov.yml
 
       - name: Checkov score threshold
         run: |
-          if [[ $(checkov -d . --quiet | grep 'Failed checks' | awk '{print $3}') -gt 10 ]]; then
+          if [[ $(checkov  --config-file .checkov.yml | grep 'Failed checks' | awk '{print $3}') -gt 1 ]]; then
             echo "Checkov score exceeded threshold. Failing pipeline."
             exit 1
           fi
