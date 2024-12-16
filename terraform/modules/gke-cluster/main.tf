@@ -47,7 +47,7 @@ resource "google_container_node_pool" "primary_standard_nodes" {
 
   lifecycle {
     ignore_changes = [
-      node_config[0].linux_node_config
+      node_config
     ]
   }
 }
