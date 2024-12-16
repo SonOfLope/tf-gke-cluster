@@ -19,7 +19,7 @@ spec:
       repoURL: oci://public.ecr.aws/dynatrace/dynatrace-operator
       targetRevision: 1.4.0
     - repoURL: 'https://github.com/SonOfLope/tf-gke-cluster.git'
-      targetRevision: master
+      targetRevision: main
       ref: values
     - repoURL: 'https://github.com/SonOfLope/tf-gke-cluster.git'
       path: gke/system/dynatrace/base

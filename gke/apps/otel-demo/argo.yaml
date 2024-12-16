@@ -21,7 +21,7 @@ spec:
       repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
       targetRevision: 0.30.5
     - repoURL: 'https://github.com/SonOfLope/tf-gke-cluster.git'
-      targetRevision: master
+      targetRevision: main
       ref: values
     - repoURL: 'https://github.com/SonOfLope/tf-gke-cluster.git'
       path: gke/apps/otel-demo/base
