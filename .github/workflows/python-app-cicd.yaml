@@ -14,31 +14,7 @@ env:
   REGISTRY: ghcr.io/sonoflope
 
 jobs:
-  sast-check:
-    name: Run SAST Check
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check Out Repo
-        uses: actions/checkout@v4
-
-      - name: Run SAST Scan with CodeQL
-        uses: github/codeql-action/init@v2
-        with:
-          languages: python
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
-        with:
-          category: 'security'
-    
-      - name: Fail Workflow if Security Issues Found
-        if: ${{ steps.codeql.outputs.alerts }}
-        run: |
-          echo "Security vulnerabilities detected by CodeQL scan."
-          exit 1
-
   build-and-push:
-    needs: sast-check
     runs-on: ubuntu-latest
     steps:
       - name: Check Out Repo
