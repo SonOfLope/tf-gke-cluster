@@ -24,10 +24,3 @@ jobs:
 
       - name: Run Checkov Scan
         run: checkov --config-file .checkov.yml
-
-      - name: Checkov score threshold
-        run: |
-          if [[ $(checkov  --config-file .checkov.yml | grep 'Failed checks' | awk '{print $3}') -gt 1 ]]; then
-            echo "Checkov score exceeded threshold. Failing pipeline."
-            exit 1
-          fi

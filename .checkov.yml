@@ -3,7 +3,7 @@ directory:
   - terraform
   - gke/apps
 output: cli
-soft-fail: true
+soft-fail: false
 quiet: true
 check:
   - CKV_GCP_10
