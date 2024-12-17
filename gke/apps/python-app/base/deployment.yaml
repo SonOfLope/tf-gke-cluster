@@ -28,7 +28,7 @@ spec:
             - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
               value: 'true'
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: http://otel-shop-demo-otelcol:4318
+              value: http://otel-shop-demo-otelcol:4317
             - name: OTEL_SERVICE_NAME
               value: python-app
             - name: OTEL_COLLECTOR_NAME
@@ -102,7 +102,7 @@ metadata:
   namespace: default
 spec:
   exporter:
-    endpoint: "http://otel-shop-demo-otelcol:4318"
+    endpoint: "http://otel-shop-demo-otelcol:4317"
   propagators:
     - tracecontext
     - baggage
@@ -113,6 +113,6 @@ spec:
       - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
         value: 'true'
       - name: OTEL_EXPORTER_OTLP_ENDPOINT
-        value: http://otel-shop-demo-otelcol:4318
+        value: http://otel-shop-demo-otelcol:4317
       - name: OTEL_SERVICE_NAME
         value: python-app
