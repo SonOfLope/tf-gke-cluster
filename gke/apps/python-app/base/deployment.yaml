@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: python-app
   namespace: default
+  annotations:
+    instrumentation.opentelemetry.io/inject-python: "true"
 spec:
   replicas: 1
   selector:
@@ -26,9 +28,19 @@ spec:
             - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
               value: 'true'
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: http://otel-shop-demo-otelcol:4317
+              value: http://otel-shop-demo-otelcol:4318
             - name: OTEL_SERVICE_NAME
               value: python-app
+            - name: OTEL_COLLECTOR_NAME
+              value: 'otel-shop-demo-otelcol'
+            - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+              value: cumulative
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://$(OTEL_COLLECTOR_NAME):4318
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: service.name=$(OTEL_SERVICE_NAME),service.namespace=default,service.version=latest
+            - name: OTEL_TRACES_SAMPLER
+              value: "always_on"
           resources:
             limits:
               memory: "256Mi"
@@ -92,7 +104,7 @@ metadata:
   namespace: default
 spec:
   exporter:
-    endpoint: "http://otel-shop-demo-otelcol:4317"
+    endpoint: "http://otel-shop-demo-otelcol:4318"
   propagators:
     - tracecontext
     - baggage
@@ -104,6 +116,6 @@ spec:
       - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
         value: 'true'
       - name: OTEL_EXPORTER_OTLP_ENDPOINT
-        value: http://otel-shop-demo-otelcol:4317
+        value: http://otel-shop-demo-otelcol:4318
       - name: OTEL_SERVICE_NAME
         value: python-app
