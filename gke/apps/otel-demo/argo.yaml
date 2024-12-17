@@ -19,7 +19,7 @@ spec:
         valueFiles:
         - $values/gke/apps/otel-demo/helm/values.yaml
       repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
-      targetRevision: 0.30.5
+      targetRevision: 0.32.8
     - repoURL: 'https://github.com/SonOfLope/tf-gke-cluster.git'
       targetRevision: main
       ref: values
