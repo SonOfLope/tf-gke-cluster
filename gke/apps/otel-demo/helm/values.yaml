@@ -592,6 +592,7 @@ opentelemetry-collector:
     service:
       pipelines:
         traces/dynatrace:
+          receivers: [otlp, httpcheck/frontendproxy, redis]
           processors: [memory_limiter, resource, transform, batch]
           exporters: [otlphttp/dynatrace]
         metrics/dynatrace:
@@ -599,6 +600,7 @@ opentelemetry-collector:
           processors: [memory_limiter, resource, batch]
           exporters: [otlphttp/dynatrace]
         logs/dynatrace:
+          receivers: [otlp, httpcheck/frontendproxy, redis]
           processors: [memory_limiter, resource, batch]
           exporters: [otlphttp/dynatrace]
 
