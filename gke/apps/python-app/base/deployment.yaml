@@ -26,6 +26,9 @@ spec:
             limits:
               memory: "256Mi"
               cpu: "500m"
+          env:
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: service.name=python-app,service.namespace=default,service.version=latest
 ---
 apiVersion: v1
 kind: Service
@@ -92,8 +95,6 @@ spec:
         value: 'otel-shop-demo-otelcol'
       - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
         value: cumulative
-      - name: OTEL_RESOURCE_ATTRIBUTES
-        value: service.name=python-app,service.namespace=default,service.version=latest
       - name: OTEL_TRACES_SAMPLER
         value: "always_on"
       - name: OTEL_LOG_LEVEL
@@ -104,3 +105,9 @@ spec:
         value: "http/protobuf"
       - name: OTEL_EXPORTER_OTLP_LOGS_PROTOCOL
         value: "http/protobuf"
+      - name: OTEL_METRICS_EXPORTER
+        value: otlp_proto_http
+      - name: OTEL_LOGS_EXPORTER
+        value: otlp_proto_http
+      - name: OTEL_TRACE_EXPORTER
+        value: otlp_proto_http
