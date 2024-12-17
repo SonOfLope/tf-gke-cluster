@@ -592,16 +592,14 @@ opentelemetry-collector:
     service:
       pipelines:
         traces/dynatrace:
-          receivers: [otlp]
-          processors: [batch]
+          processors: [memory_limiter, resource, transform, batch]
           exporters: [otlphttp/dynatrace]
         metrics/dynatrace:
-          receivers: [otlp, spanmetrics]
-          processors: [filter/histograms, batch, cumulativetodelta]
+          receivers: [httpcheck/frontendproxy, redis, otlp, spanmetrics]
+          processors: [memory_limiter, resource, batch]
           exporters: [otlphttp/dynatrace]
         logs/dynatrace:
-          receivers: [otlp]
-          processors: [batch]
+          processors: [memory_limiter, resource, batch]
           exporters: [otlphttp/dynatrace]
 
 jaeger:
