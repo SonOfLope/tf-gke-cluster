@@ -110,8 +110,8 @@ spec:
   propagators:
     - tracecontext
     - baggage
-sampler:
-  type: always_on
+  sampler:
+    type: always_on
   python:
     env:
       - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
