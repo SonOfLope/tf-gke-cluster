@@ -35,8 +35,6 @@ spec:
               value: 'otel-shop-demo-otelcol'
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
-            - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: http://otel-shop-demo-otelcol:4318
             - name: OTEL_RESOURCE_ATTRIBUTES
               value: service.name=python-app,service.namespace=default,service.version=latest
             - name: OTEL_TRACES_SAMPLER
