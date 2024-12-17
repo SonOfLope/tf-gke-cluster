@@ -43,6 +43,12 @@ spec:
               value: "debug"
             - name: OTEL_EXPORTER_OTLP_PROTOCOL
               value: "http/protobuf"
+            - name: OTEL_TRACES_EXPORTER
+              value: console
+            - name: OTEL_METRICS_EXPORTER
+              value: console
+            - name: OTEL_LOGS_EXPORTER
+              value: console
           resources:
             limits:
               memory: "256Mi"
@@ -110,6 +116,7 @@ spec:
   propagators:
     - tracecontext
     - baggage
+    - b3
   sampler:
     type: always_on
   python:
