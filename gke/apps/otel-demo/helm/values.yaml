@@ -321,7 +321,7 @@ components:
       - name: LOCUST_WEB_PORT
         value: "8089"
       - name: LOCUST_USERS
-        value: "10"
+        value: "6"
       - name: LOCUST_SPAWN_RATE
         value: "1"
       - name: LOCUST_HOST
@@ -341,8 +341,10 @@ components:
       - name: OTEL_EXPORTER_OTLP_ENDPOINT
         value: http://$(OTEL_COLLECTOR_NAME):4317
     resources:
-      limits:
+      requests:
         memory: 1Gi
+      limits:
+        memory: 2Gi
 
   paymentService:
     enabled: true
