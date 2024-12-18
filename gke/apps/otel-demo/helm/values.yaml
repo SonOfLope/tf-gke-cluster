@@ -582,6 +582,12 @@ opentelemetry-collector:
               # could be removed when https://github.com/vercel/next.js/pull/64852 is fixed upstream
               - replace_pattern(name, "\\?.*", "")
               - replace_match(name, "GET /api/products/*", "GET /api/products/{productId}")
+        metric_statements:
+          - context: metric
+            statements:
+              - replace_all_patterns(name, "http.server.duration", "http.server.duration.modified")
+              - replace_all_patterns(name, "feature_flag.flagd.impression", "feature_flag.flagd.impression.modified")
+              - drop_metric_if(match(name, "redis.commands.processed"))
       resource:
         attributes:
         - key: service.instance.id
@@ -598,7 +604,7 @@ opentelemetry-collector:
           exporters: [otlphttp/dynatrace]
         metrics/dynatrace:
           receivers: [httpcheck/frontendproxy, redis, otlp, spanmetrics]
-          processors: [memory_limiter, resource, batch]
+          processors: [memory_limiter, resource, transform, batch]
           exporters: [otlphttp/dynatrace]
         logs/dynatrace:
           receivers: [otlp]
