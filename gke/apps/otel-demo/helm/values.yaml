@@ -562,13 +562,14 @@ opentelemetry-collector:
         targets:
           - endpoint: 'http://{{ include "otel-demo.name" . }}-frontendproxy:8080'
       redis:
-        endpoint: "valkey-cart:6379"
+        endpoint: "otel-shop-demo-valkey:6379"
         collection_interval: 10s
 
     exporters:
       otlphttp/dynatrace:
         endpoint: "https://klo77120.live.dynatrace.com/api/v2/otlp"
         headers:
+          Authorization: "Api-Token dt0c01.AA2BCRCMKPXHKLWJ3DARZRBK.M3NCEEEHJUBKHDESCNWXKQ2FO4DEEQUUX5C6R5PCFX3S6DWOUUB7RDDPNPKIRFBE"
     processors:
       # This processor is used to help limit high cardinality on next.js span names
       # When this PR is merged (and released) we can remove this transform processor
