@@ -587,13 +587,13 @@ opentelemetry-collector:
             statements:
               - set(name, "http.server.duration.modified") where name == "http.server.duration"
               - set(name, "feature_flag.flagd.impression.modified") where name == "feature_flag.flagd.impression"
-        cumulativetodelta: {}
-        filter/histograms:
-          error_mode: ignore
-          metrics:
-            metric:
-              - 'type == METRIC_DATA_TYPE_HISTOGRAM'
-        batch: {}
+      cumulativetodelta: {}
+      filter/histograms:
+        error_mode: ignore
+        metrics:
+          metric:
+            - 'type == METRIC_DATA_TYPE_HISTOGRAM'
+      batch: {}
 
       resource:
         attributes:
