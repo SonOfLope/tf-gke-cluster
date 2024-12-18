@@ -585,9 +585,9 @@ opentelemetry-collector:
         metric_statements:
           - context: metric
             statements:
-              - replace_all_patterns(name, "http.server.duration", "http.server.duration.modified")
-              - replace_all_patterns(name, "feature_flag.flagd.impression", "feature_flag.flagd.impression.modified")
-              - drop_metric_if(match(name, "redis.commands.processed"))
+              - replace_pattern(name, "http\\.server\\.duration", "http.server.duration.modified", "", "", "")
+              - replace_pattern(name, "feature_flag\\.flagd\\.impression", "feature_flag.flagd.impression.modified", "", "", "")
+              - drop_metric_if(Match(name, "redis\\.commands\\.processed"))
       resource:
         attributes:
         - key: service.instance.id
