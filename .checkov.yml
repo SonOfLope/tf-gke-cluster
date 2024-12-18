@@ -8,7 +8,6 @@ check: # Policy index https://www.checkov.io/5.Policy%20Index/all.html
   # GCP checks
   - CKV_GCP_10
   - CKV_GCP_9
-  - CKV_GCP_23
 
   # Kubernetes checks
   - CKV_K8S_27

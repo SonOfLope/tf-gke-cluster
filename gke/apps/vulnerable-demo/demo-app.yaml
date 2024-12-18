@@ -12,16 +12,21 @@ spec:
       labels:
         app: demo-app
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 2000
       containers:
       - name: demo-container
         image: nginx:latest
         ports:
         - containerPort: 80
         securityContext:
-          privileged: true
-          allowPrivilegeEscalation: true
+          runAsNonRoot: true
+          runAsUser: 1000
+          allowPrivilegeEscalation: false
           capabilities:
-            add: ["ALL"]
+            drop: ["ALL"]
         resources:
           limits:
             memory: "128Mi"
@@ -29,7 +34,6 @@ spec:
           requests:
             memory: "64Mi"
             cpu: "250m"
-
 ---
 apiVersion: v1
 kind: Service
