@@ -587,7 +587,6 @@ opentelemetry-collector:
             statements:
               - set(name, "http.server.duration.modified") where name == "http.server.duration"
               - set(name, "feature_flag.flagd.impression.modified") where name == "feature_flag.flagd.impression"
-              - set(drop, true) where name == "redis.commands.processed"
       resource:
         attributes:
         - key: service.instance.id
