@@ -27,13 +27,6 @@ spec:
           image: ghcr.io/sonoflope/python-app:latest
           ports:
             - containerPort: 8080
-          env:
-            - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
-              value: 'true'
-            - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: http://otel-shop-demo-otelcol:4317
-            - name: OTEL_SERVICE_NAME
-              value: python-app
           resources:
             limits:
               memory: "256Mi"
@@ -108,14 +101,34 @@ spec:
   propagators:
     - tracecontext
     - baggage
+    - b3
   sampler:
-    type: parentbased_traceidratio
-    argument: "1"
+    type: always_on
   python:
     env:
       - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
         value: 'true'
       - name: OTEL_EXPORTER_OTLP_ENDPOINT
-        value: http://otel-shop-demo-otelcol:4317
+        value: http://otel-shop-demo-otelcol:4318
       - name: OTEL_SERVICE_NAME
         value: python-app
+      - name: OTEL_COLLECTOR_NAME
+        value: 'otel-shop-demo-otelcol'
+      - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+        value: cumulative
+      - name: OTEL_TRACES_SAMPLER
+        value: "always_on"
+      - name: OTEL_LOG_LEVEL
+        value: "debug"
+      - name: OTEL_EXPORTER_OTLP_PROTOCOL
+        value: "http/protobuf"
+      - name: OTEL_EXPORTER_OTLP_TRACES_PROTOCOL
+        value: "http/protobuf"
+      - name: OTEL_EXPORTER_OTLP_LOGS_PROTOCOL
+        value: "http/protobuf"
+      - name: OTEL_METRICS_EXPORTER
+        value: otlp_proto_http
+      - name: OTEL_LOGS_EXPORTER
+        value: otlp_proto_http
+      - name: OTEL_TRACE_EXPORTER
+        value: otlp_proto_http
